@@ -1,0 +1,46 @@
+name: Python Script Workflow
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *" # every day at 3pm JST
+  push:
+    branches: [main]
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    environment:
+      name: env
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+      APP_MODE: ${{ vars.APP_MODE }}
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: initialize
+        run: apt-get update && apt-get install --no-install-recommends -y curl && apt-get clean
+      - name: poetry repo
+        run: curl -sSL https://install.python-poetry.org/ | python -
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: poetry install --no-root
+      - name: Run Python script
+        run: python3 main.py
+      - name: Print environment variable
+        run: echo ${{ vars.APP_MODE }}
+      - name: commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "update data" -a || echo "No changes to commit"
+      - name: push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
