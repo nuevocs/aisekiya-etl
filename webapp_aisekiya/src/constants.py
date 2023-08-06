@@ -5,4 +5,4 @@ load_dotenv()
 KEY_PATH = os.getenv("KEY_PATH")
 PROJECT_ID = os.getenv("PROJECT_ID")
 BUCKET_NAME = os.getenv("BUCKET_NAME")
-
+AUTH_DATA = os.getenv("AUTH_DATA")

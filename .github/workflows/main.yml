@@ -13,6 +13,7 @@ jobs:
     env:
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
       BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+      AUTH_DATA: ${{ secrets.AUTH_DATA }}
       APP_MODE: ${{ vars.APP_MODE }}
 
 

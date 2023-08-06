@@ -1,10 +1,10 @@
 from src import constants, data_framing, data_scraping, gcs
 import pendulum
 
-key_path = constants.KEY_PATH
+key = constants.AUTH_DATA
 project_id = constants.PROJECT_ID
 bucket_name = constants.BUCKET_NAME
-temp_file_path = "temp/temp.parquet"
+temp_file_path = "webapp_aisekiya/temp/temp.parquet"
 blob_name = f"data_{pendulum.now('UTC').in_timezone('Asia/Tokyo').strftime('%Y_%m_%d_%H_%M')}.parquet"
 blob_directory = f"aisekiya_congestion/"
 
@@ -26,7 +26,7 @@ def main() -> None:
         blob_name=blob_name,
         blob_directory=blob_directory,
     )
-    gcs_upload.create_client(key_path=key_path)
+    gcs_upload.create_client(key=key)
     gcs_upload.uploading()
 
 
