@@ -9,5 +9,5 @@ def generating_df(
 """
     df = pd.DataFrame(data_list)
     # print(df)
-    df.to_parquet("temp/temp.parquet", engine="pyarrow", index=False)
+    df.to_parquet("webapp_aisekiya/temp/temp.parquet", engine="pyarrow", index=False)
     # df.to_csv("temp.csv", index=False)
