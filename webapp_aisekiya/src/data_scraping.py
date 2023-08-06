@@ -3,7 +3,7 @@ from selectolax.parser import HTMLParser
 from dataclasses import dataclass, asdict
 import time
 import pendulum
-# import data_framing
+import datetime
 import random
 
 http_get_interval = random.randint(1, 5)
@@ -39,7 +39,8 @@ class AisekiyaData:
     womens_max: int
     womens_pct: float
     mens_womens_pct: float  # mens / womens: if more than 1.0 then mens are more than womens
-    datetime: str = pendulum.now('UTC').in_timezone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S")
+    datetime: datetime = pendulum.now('UTC')
+    # datetime: str = pendulum.now('UTC').in_timezone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S")
 
 
 class GetStores:
