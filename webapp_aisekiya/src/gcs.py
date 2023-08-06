@@ -3,7 +3,7 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 from dataclasses import dataclass
 import os
-
+import json
 
 
 @dataclass
@@ -24,7 +24,7 @@ class GCSBucket:
         # cred = service_account.Credentials.from_service_account_file(key, scopes=[
         #     "https://www.googleapis.com/auth/cloud-platform"])
 
-        cred = service_account.Credentials.from_service_account_info(key, scopes=[
+        cred = service_account.Credentials.from_service_account_info(json.loads(key), scopes=[
             "https://www.googleapis.com/auth/cloud-platform"])
 
         self.client = storage.Client(project=project_id, credentials=cred)
