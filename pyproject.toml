@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "webapp-aisekiya"
+version = "0.1.0"
+description = ""
+authors = ["Tatsuya Tomita <tat@seriousexplosion.net>"]
+readme = "README.md"
+packages = [{include = "webapp_aisekiya"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+playwright = "^1.36.0"
+httpx = "^0.24.1"
+selectolax = "^0.3.16"
+pendulum = "^2.1.2"
+pandas = "^2.0.3"
+pyarrow = "^12.0.1"
+python-dotenv = "^1.0.0"
+google-cloud-storage = "^2.10.0"
+google-cloud-bigquery = "^3.11.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
