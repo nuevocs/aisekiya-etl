@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
       - name: Run Python script
-        run: python3 main.py
+        run: poetry run python3 webapp_aisekiya/app.py
       - name: Print environment variable
         run: echo ${{ vars.APP_MODE }}
       - name: commit files
